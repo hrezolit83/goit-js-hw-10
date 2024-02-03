@@ -8,10 +8,11 @@ import iziToast from "izitoast";
 import "izitoast/dist/css/iziToast.min.css";
 
 
-  let userSelectedDate;
+let userSelectedDate = null;
 let startButton = document.querySelector('[data-start]');
-startButton.disabled = true;
+startButton.setAttribute('disabled', 'true');
 
+const input = document.querySelector('#datetime-picker');
 const daysDisplay = document.querySelector('[data-days]');
 const hoursDisplay = document.querySelector('[data-hours]');
 const minutesDisplay = document.querySelector('[data-minutes]');
@@ -27,16 +28,15 @@ const options = {
   onClose(selectedDates) {
     if (selectedDates[0] > Date.now()) {
       userSelectedDate = selectedDates[0];
-      startButton.disabled = false;
+      startButton.removeAttribute('disabled');
       updateTimerDisplay();
     } else {
-      userSelectedDate = undefined;
-      startButton.disabled = true;
+      startButton.setAttribute('disabled', 'true');
       iziToast.error({
-        message:
-          '<i class="fa-regular fa-circle-xmark fa-lg"></i> Please choose a date in the future',
+        color: 'red',
+        message: 'Please choose a date in the future',
         position: 'topRight',
-        icon: '',
+        // icon: '',
       });
     }
   },
@@ -44,50 +44,37 @@ const options = {
 
   startButton.addEventListener('click', () => {
     if (userSelectedDate) {
-      startTimer(); // Calling the function to start the timer
+      startTimer();
     }
   });
   
+  function startTimer() {
+    timerInterval = setInterval(updateTimerDisplay, 1000);
+  }
+
   function updateTimerDisplay() {
     const timeDifference = userSelectedDate - Date.now();
     const { days, hours, minutes, seconds } = convertMs(timeDifference);
   
-    if (!isNaN(days) && !isNaN(hours) && !isNaN(minutes) && !isNaN(seconds)) {
+    if (timeDifference >= 0) {
       daysDisplay.textContent = addLeadingZero(days);
       hoursDisplay.textContent = addLeadingZero(hours);
       minutesDisplay.textContent = addLeadingZero(minutes);
       secondsDisplay.textContent = addLeadingZero(seconds);
-    }
-  
-    // Checking if the timer has reached zero
-    if (timeDifference <= 0) {
+    } else {
       stopTimer();
     }
-  }
-  
-  function startTimer() {
-    // Starting the timer, updating the interface every second
-    timerInterval = setInterval(updateTimerDisplay, 1000);
+
+    function addLeadingZero(value) {
+      return String(value).padStart(2, '0');
+    }
   }
   
   function stopTimer() {
-    // Checking if the timer has been started before calling clearInterval
     if (timerInterval) {
-      // Clearing the interval to stop the timer
       clearInterval(timerInterval);
-  
-      daysDisplay.textContent = '00';
-      hoursDisplay.textContent = '00';
-      minutesDisplay.textContent = '00';
-      secondsDisplay.textContent = '00';
-  
-      // Reseting the timerInterval variable
       timerInterval = null;
     }
-  }
-  
-  function addLeadingZero(value) {
-    return String(value).padStart(2, '0');
   }
   
   function convertMs(ms) {
