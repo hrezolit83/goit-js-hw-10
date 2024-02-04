@@ -1,2 +1,0 @@
-import{i as o}from"./vendor-651d7991.js";const n=document.querySelector(".form");n.addEventListener("submit",e=>{e.preventDefault();const s=parseInt(e.target.elements.delay.value,10),i=e.target.elements.state.value;r(s,i).then(t=>{o.success({message:`${t}`,position:"topRight"})}).catch(t=>{o.error({message:`${t}`,position:"topRight"})})});function r(e,s){return new Promise((i,t)=>{setTimeout(()=>{s==="fulfilled"?i(`✅ Fulfilled promise in ${e}ms`):t(`❌ Rejected promise in ${e}ms`)},e)})}
-//# sourceMappingURL=2-snackbar-2edd5640.js.map
