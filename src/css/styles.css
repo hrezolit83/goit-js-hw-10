@@ -1,0 +1,129 @@
+/**
+  |============================
+  | include css partials with
+  | default @import url()
+  |============================
+*/
+@import url('./reset.css');
+@import url('./vite-promo.css');
+
+:root {
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+
+  color: #242424;
+  background-color: rgba(255, 255, 255, 0.87);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+a:hover {
+  color: darkblue;
+}
+
+section {
+  margin-bottom: 25px;
+}
+
+button[data-start] {
+  padding: 5px 15px;
+  border-radius: 5px;
+  border: 1px solid grey;
+  background-color: #4e75ff;
+}
+
+button[data-start]:disabled {
+  background-color: #cfcfcf;
+}
+
+button[data-start]:hover,
+button[data-start]:focus {
+  background-color: #6c8cff;
+}
+
+#datetime-picker {
+  width: 240px;
+  padding: 5px 15px;
+  border-radius: 5px;
+  border: 1px solid grey;
+}
+
+#datetime-picker:hover,
+#datetime-picker:focus {
+  outline-color: blue;
+}
+
+.timer {
+  display: flex;
+  gap: 24px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.value {
+  font-size: 32px;
+  margin-top: 10px;
+}
+
+.label {
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.form input {
+  width: 368px;
+  border-radius: 5px;
+  padding: 5px 10px;
+  outline: none;
+  font-size: 18px;
+  outline: none;
+}
+
+.form input:focus {
+  border-color: #4e75ff;
+}
+
+.form button {
+  font-size: 18px;
+
+  outline: none;
+  width: 468px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin-top: 10px;
+  background-color: rgb(102, 102, 252);
+  color: #ffffff;
+}
+
+.form button:hover {
+  background-color: rgb(0, 149, 255);
+}
+
+.fieldset label {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.form fieldset {
+  width: 200px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  display: flex;
+  text-align: center;
+}
+
+input[type='radio'] {
+  width: 215px;
+}
