@@ -9,7 +9,7 @@ import "izitoast/dist/css/iziToast.min.css";
 
 
 let userSelectedDate = null;
-let startButton = document.querySelector('[data-start]');
+const startButton = document.querySelector('[data-start]');
 startButton.setAttribute('disabled', 'true');
 
 const input = document.querySelector('#datetime-picker');
@@ -36,7 +36,6 @@ const options = {
         color: 'red',
         message: 'Please choose a date in the future',
         position: 'topRight',
-        // icon: '',
       });
     }
   },
@@ -50,6 +49,7 @@ const options = {
   
   function startTimer() {
     timerInterval = setInterval(updateTimerDisplay, 1000);
+    startButton.setAttribute('disabled', 'true');
   }
 
   function updateTimerDisplay() {
@@ -74,6 +74,7 @@ const options = {
     if (timerInterval) {
       clearInterval(timerInterval);
       timerInterval = null;
+      input.removeAttribute('disabled');
     }
   }
   
