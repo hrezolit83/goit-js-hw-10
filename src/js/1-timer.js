@@ -50,6 +50,7 @@ const options = {
   function startTimer() {
     timerInterval = setInterval(updateTimerDisplay, 1000);
     startButton.setAttribute('disabled', 'true');
+    input.setAttribute('disabled', 'true');
   }
 
   function updateTimerDisplay() {
